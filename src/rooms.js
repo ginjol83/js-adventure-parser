@@ -1,4 +1,4 @@
-const salas = {
+const rooms = {
     "Claro en la Niebla": {
       descripcion: "Un lugar en el bosque envuelto en niebla. Árboles sombríos y una figura encapuchada en la distancia al norte.",
       objetos: ["Objeto misterioso"],
@@ -18,4 +18,4 @@ const salas = {
     }
   }
   
-  export { salas }
+  export { rooms }
