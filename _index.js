@@ -1,6 +1,6 @@
 import { rooms } from "./src/rooms.js";
 import { comandos } from "./src/comands.js";
-import { seeHandle } from "./src/handlers/seeHandle.js";
+import { seeHandle,describirUbicacion } from "./src/handlers/seeHandle.js";
 import { getHandle } from "./src/handlers/getHandle.js";
 
 import readline from 'readline';
@@ -12,7 +12,7 @@ const rl = readline.createInterface({
 });
 
 
-const estadoJuego = { ubicacion: "Claro en la Niebla", inventario: [] }
+var estadoJuego = { ubicacion: "Claro en la Niebla", inventario: [] }
 
 const tokenizarEntrada = (entrada) => entrada.trim().toLowerCase().split(/\s+/)
 
@@ -40,10 +40,10 @@ function ejecutarComando(entrada) {
 
   switch (verbo) {
     case "mirar":
-      seeHandle(objeto);
+      seeHandle(objeto, estadoJuego);
       break;
     case "tomar":
-      getHandle(objeto);
+      estadoJuego = getHandle(objeto, estadoJuego);
       break;
     case "usar":
       manejarUsar(objeto);
@@ -88,21 +88,12 @@ function manejarIr(direccion) {
   }
 }
 
-function describirUbicacion() {
-  const salaActual = rooms[estadoJuego.ubicacion];
-  console.log(salaActual.descripcion);
 
-  if (salaActual.objetos.length > 0) {
-    console.log("Objetos visibles:", salaActual.objetos.join(", "));
-  } else {
-    console.log("No hay objetos visibles aquí.");
-  }
-}
 
 
 function iniciarJuego() {
   console.log("Bienvenido a la aventura.");
-  describirUbicacion();  // Mostrar descripción inicial
+  describirUbicacion(estadoJuego.ubicacion);  // Mostrar descripción inicial
   promptUsuario();
 }
 
