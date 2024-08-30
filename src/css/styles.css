@@ -1,0 +1,21 @@
+/* Estilo para la consola */
+#consola {
+    background-color: black;
+    color: white;
+    width: 600px;
+    height: 400px;
+    overflow-y: auto;
+    padding: 10px;
+    font-family: monospace;
+    border: 1px solid #333;
+}
+#input {
+    background-color: black;
+    color: white;
+    border: none;
+    width: 100%;
+    font-family: monospace;
+}
+#input:focus {
+    outline: none;
+}

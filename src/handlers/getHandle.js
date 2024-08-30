@@ -1,5 +1,6 @@
 import { rooms } from '../rooms.js'
 import { toLowerCase } from '../utils/stringsUtils.js'
+import { agregarSalida } from '../../game.js'; // Asegúrate de que la ruta sea correcta
 
 const getHandle = (objeto,estadoJuego) => {
     const cad = toLowerCase(objeto)
@@ -12,9 +13,9 @@ const getHandle = (objeto,estadoJuego) => {
     if (indice !== -1) {
         estadoJuego.inventario.push(result)
         salaActual.objetos.splice(indice, 1)
-        console.log(`Has tomado el/la ${result}.`)
+        agregarSalida(`Has tomado el/la ${result}.`)
     } else {
-        console.log(`No hay un(a) ${result} aquí para tomar.`)
+        agregarSalida(`No hay un(a) ${result} aquí para tomar.`)
     }
     return estadoJuego
 }

@@ -1,30 +1,30 @@
-import { rooms } from '../rooms.js'
+import { rooms } from '../rooms.js';
+import { agregarSalida } from '../../game.js'; // Asegúrate de que la ruta sea correcta
 
-const seeHandle = (objeto,estadoJuego) => {
-    const ubicacion =estadoJuego.ubicacion
+const seeHandle = (objeto, estadoJuego) => {
+    const ubicacion = estadoJuego.ubicacion;
     if (!objeto) {
-        describirUbicacion(ubicacion)
-        return
+        describirUbicacion(ubicacion);
+        return;
     }
 
-    const salaActual = rooms[ubicacion]
+    const salaActual = rooms[ubicacion];
     if (salaActual.objetos.includes(objeto)) {
-        console.log(`Ves un(a) ${objeto}.`)
+        agregarSalida(`Ves un(a) ${objeto}.`);
     } else {
-        console.log(`No hay un(a) ${objeto} aquí.`)
+        agregarSalida(`No hay un(a) ${objeto} aquí.`);
     }
 }
 
 function describirUbicacion(ubicacion) {
-    const salaActual = rooms[ubicacion]
-    console.log(salaActual.descripcion)
-  
-    if (salaActual.objetos.length > 0) {
-      console.log("Objetos visibles:", salaActual.objetos.join(", "))
-    } else {
-      console.log("No hay objetos visibles aquí.")
-    }
-      
-  }
+    const salaActual = rooms[ubicacion];
+    agregarSalida(salaActual.descripcion);
 
-export { seeHandle, describirUbicacion }
+    if (salaActual.objetos.length > 0) {
+        agregarSalida("Objetos visibles: " + salaActual.objetos.join(", "));
+    } else {
+        agregarSalida("No hay objetos visibles aquí.");
+    }
+}
+
+export { seeHandle, describirUbicacion };
